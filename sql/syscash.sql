@@ -17,7 +17,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- -----------------------------------------------------
 -- Schema syscash
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `syscash` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
+CREATE SCHEMA IF NOT EXISTS `syscash`;
 USE `syscash` ;
 
 -- -----------------------------------------------------
@@ -30,9 +30,7 @@ CREATE TABLE IF NOT EXISTS `syscash`.`usuario` (
   `login` VARCHAR(45) NOT NULL,
   `senha` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
@@ -48,9 +46,7 @@ CREATE TABLE IF NOT EXISTS `syscash`.`categoria` (
   CONSTRAINT `fk_categoria_usuario`
     FOREIGN KEY (`usuario_id`)
     REFERENCES `syscash`.`usuario` (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
@@ -73,9 +69,7 @@ CREATE TABLE IF NOT EXISTS `syscash`.`conta_receber` (
   CONSTRAINT `fk_conta_receber_usuario`
     FOREIGN KEY (`usuario_id`)
     REFERENCES `syscash`.`usuario` (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+ENGINE = InnoDB;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
