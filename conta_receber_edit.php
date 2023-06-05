@@ -41,7 +41,7 @@ if (filter_input(INPUT_SERVER, "REQUEST_METHOD") === "POST") {
         <div class="col-md-12">
             <div class="row">
                 <div class="col-md-4 d-flex justify-content-start">
-                    <h4>Adicionar Contas a Receber</h4>
+                    <h4>Adicionar Contas a Pagar</h4>
                 </div>
                 <div class="col-md-3 d-flex justify-content-center">
                 </div>
@@ -50,7 +50,7 @@ if (filter_input(INPUT_SERVER, "REQUEST_METHOD") === "POST") {
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#" title="Home" id="home_index_contareceber"><i class="fas fa-home"></i>
                                     <span>Home</span></a></li>
-                            <li class="breadcrumb-item"><a href="#" title="Contas a Receber" id="contareceber_index"><i class="fas fa-calendar-plus"></i> <span>Contas a Receber</span></a></li>
+                            <li class="breadcrumb-item"><a href="#" title="Contas a Receber" id="contareceber_index"><i class="fas fa-calendar-plus"></i> <span>Contas a Pagar</span></a></li>
                             <li class="breadcrumb-item active" aria-current="page">Adicionar</li>
                         </ol>
                     </nav>
