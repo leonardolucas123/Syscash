@@ -78,7 +78,7 @@ try {
         <div class="col-md-12">
             <div class="row">
                 <div class="col-md-4 d-flex justify-content-start">
-                    <h4>Lista de Categorias</h4>
+                    <h4>Lista de Favorecidos</h4>
                 </div>
                 <div class="col-md-4 d-flex justify-content-center">
                 </div>
@@ -87,7 +87,7 @@ try {
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#" title="Home" id="home_index_categoria"><i class="fas fa-home"></i>
                                     <span>Home</span></a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Categoria</li>
+                            <li class="breadcrumb-item active" aria-current="page">Favorecidos</li>
                         </ol>
                     </nav>
                 </div>

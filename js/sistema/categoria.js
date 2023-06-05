@@ -131,7 +131,7 @@ $(document).ready(function () {
 					pagina_categoria: $("#pagina_categoria").val(),
 					texto_busca_categoria: $("#texto_busca_categoria").val()
 				}, function () {
-					$("#div_mensagem_texto_categoria").empty().append("Categoria cadastrada!");
+					$("#div_mensagem_texto_categoria").empty().append("Favorecido cadastrado!");
 					$("#div_mensagem_categoria").show();
 				});
 			},
@@ -344,7 +344,7 @@ $(document).ready(function () {
 			},
 			dataType: "json",
 			success: function () {
-				$("#div_mensagem_texto_categoria").empty().append("Categoria excluída!");
+				$("#div_mensagem_texto_categoria").empty().append("Favorecido excluído!");
 				$("#div_mensagem_categoria").show();
 				$("tr#" + registro.id + "_categoria").remove();
 			},

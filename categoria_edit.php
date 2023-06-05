@@ -38,7 +38,7 @@ if (filter_input(INPUT_SERVER, "REQUEST_METHOD") === "POST") {
         <div class="col-md-12">
             <div class="row">
                 <div class="col-md-4 d-flex justify-content-start">
-                    <h4>Editar Categoria</h4>
+                    <h4>Editar Favorecido</h4>
                 </div>
                 <div class="col-md-4 d-flex justify-content-center">
                 </div>
@@ -47,7 +47,7 @@ if (filter_input(INPUT_SERVER, "REQUEST_METHOD") === "POST") {
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#" title="Home" id="home_index_categoria"><i class="fas fa-home"></i>
                                     <span>Home</span></a></li>
-                            <li class="breadcrumb-item"><a href="#" title="Categoria" id="categoria_index"><i class="fas fas fa-tag"></i> <span>Categoria</span></a></li>
+                            <li class="breadcrumb-item"><a href="#" title="Categoria" id="categoria_index"><i class="fas fas fa-tag"></i> <span>Favorecido</span></a></li>
                             <li class="breadcrumb-item active" aria-current="page">Editar</li>
                         </ol>
                     </nav>
