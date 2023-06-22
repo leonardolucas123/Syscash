@@ -14,11 +14,11 @@ try {
     $usuario_id = isset($_SESSION["usuario_id"]) ? $_SESSION["usuario_id"] : 0;
 
     if (filter_input(INPUT_SERVER, "REQUEST_METHOD") === "POST") {
-        if (isset($_POST["texto_busca_categoria"])) {
-            $texto_busca = filter_input(INPUT_POST, "texto_busca_categoria", FILTER_SANITIZE_STRING);
+        if (isset($_POST["texto_busca_favorecidos"])) {
+            $texto_busca = filter_input(INPUT_POST, "texto_busca_favorecidos", FILTER_SANITIZE_STRING);
         }
-        if (isset($_POST["pagina_categoria"])) {
-            $pagina = filter_input(INPUT_POST, "pagina_categoria", FILTER_VALIDATE_INT);
+        if (isset($_POST["pagina_favorecidos"])) {
+            $pagina = filter_input(INPUT_POST, "pagina_favorecidos", FILTER_VALIDATE_INT);
             $inicio = ($pagina - 1) * REGISTROS_POR_PAGINA;
 
             if ($inicio < 0) {
@@ -30,7 +30,7 @@ try {
     $conexao = new PDO("mysql:host=" . SERVIDOR . ";dbname=" . BANCO, USUARIO, SENHA);
 
     //Sql para ser consultada
-    $sql = "select * from categoria where (id like :palavra or descricao like :palavra) and usuario_id = :id order by id asc ";
+    $sql = "select * from favorecidos where (id like :palavra or descricao like :palavra) and usuario_id = :id order by id asc ";
 
     // Codificação da paginação
     $pre_pagina = $conexao->prepare($sql);
@@ -45,9 +45,9 @@ try {
         if ($total_paginas > 1) {
             for ($i = 1; $i <= $total_paginas; $i++) {
                 if ($i == $pagina) {
-                    $barra_paginacao .= "<input type='button' name='pagina_categoria' id='pagina_categoria' value='" . $i . "' class='btn btn-primary btn-sm' />";
+                    $barra_paginacao .= "<input type='button' name='pagina_favorecidos' id='pagina_favorecidos' value='" . $i . "' class='btn btn-primary btn-sm' />";
                 } else {
-                    $barra_paginacao .= "<input type='button' name='pagina_categoria' id='pagina_categoria' value='" . $i . "' class='btn btn-secondary btn-sm' />";
+                    $barra_paginacao .= "<input type='button' name='pagina_favorecidos' id='pagina_favorecidos' value='" . $i . "' class='btn btn-secondary btn-sm' />";
                 }
             }
         }
@@ -61,7 +61,7 @@ try {
     $pre_registros->bindValue(":palavra", "%" . $texto_busca . "%", PDO::PARAM_STR);
     $pre_registros->bindValue(":id", $usuario_id, PDO::PARAM_INT);
     $pre_registros->execute();
-    $categorias = $pre_registros->fetchAll(PDO::FETCH_ASSOC);
+    $favorecidoss = $pre_registros->fetchAll(PDO::FETCH_ASSOC);
 } catch (Exception $e) {
     $erros[] = $e->getMessage();
     $_SESSION["erros"] = $erros;
@@ -72,22 +72,22 @@ try {
 <br>
 <div class="container">
     <div class="row">
-        <div id="carregando_categoria" class="d-none text-center">
+        <div id="carregando_favorecidos" class="d-none text-center">
             <img src="./imagens/carregando.gif" />
         </div>
         <div class="col-md-12">
             <div class="row">
                 <div class="col-md-4 d-flex justify-content-start">
-                    <h4>Lista de Categoria</h4>
+                    <h4>Lista de favorecidos</h4>
                 </div>
                 <div class="col-md-4 d-flex justify-content-center">
                 </div>
                 <div class="col-md-4 d-flex justify-content-end">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#" title="Home" id="home_index_categoria"><i class="fas fa-home"></i>
+                            <li class="breadcrumb-item"><a href="#" title="Home" id="home_index_favorecidos"><i class="fas fa-home"></i>
                                     <span>Home</span></a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Categoria</li>
+                            <li class="breadcrumb-item active" aria-current="page">favorecidos</li>
                         </ol>
                     </nav>
                 </div>
@@ -95,14 +95,14 @@ try {
             <hr>
             <div class="row">
                 <div class="col-md-4 d-flex justify-content-start">
-                    <a href="#" class="btn btn-primary btn-sm" title="Adicionar" id="botao_adicionar_categoria"><i class="fas fa-plus-square"></i>&nbsp;Adicionar</a>&nbsp;
-                    <a href="categoria_pdf.php" class="btn btn-primary btn-sm" title="Imprimir" id="botao_imprimir_categoria" target="_blank"><i class="fas fa-print"></i>&nbsp;Imprimir</a>
+                    <a href="#" class="btn btn-primary btn-sm" title="Adicionar" id="botao_adicionar_favorecidos"><i class="fas fa-plus-square"></i>&nbsp;Adicionar</a>&nbsp;
+                    <a href="favorecidos_pdf.php" class="btn btn-primary btn-sm" title="Imprimir" id="botao_imprimir_favorecidos" target="_blank"><i class="fas fa-print"></i>&nbsp;Imprimir</a>
                 </div>
                 <div class="col-md-4 d-flex justify-content-center">
                 </div>
                 <div class="col-md-4 d-flex justify-content-end">
-                    <input type="text" name="texto_busca" value="<?php echo $texto_busca; ?>" id="texto_busca_categoria" maxlength="25">
-                    <a id="botao_pesquisar_categoria" class="btn btn-primary btn-sm" title="Pesquisar"><i class="fas fa-search"></i>&nbsp;Pesquisar</a>
+                    <input type="text" name="texto_busca" value="<?php echo $texto_busca; ?>" id="texto_busca_favorecidos" maxlength="25">
+                    <a id="botao_pesquisar_favorecidos" class="btn btn-primary btn-sm" title="Pesquisar"><i class="fas fa-search"></i>&nbsp;Pesquisar</a>
                 </div>
             </div>
             <hr>
@@ -120,22 +120,22 @@ try {
             }
             unset($_SESSION["erros"]);
             ?>
-            <div class="alert alert-info alert-dismissible fade show" style="display: none;" id="div_mensagem_categoria">
-                <button type="button" class="btn-close btn-sm" aria-label="Close" id="div_mensagem_botao_categoria"></button>
-                <p id="div_mensagem_texto_categoria"></p>
+            <div class="alert alert-info alert-dismissible fade show" style="display: none;" id="div_mensagem_favorecidos">
+                <button type="button" class="btn-close btn-sm" aria-label="Close" id="div_mensagem_botao_favorecidos"></button>
+                <p id="div_mensagem_texto_favorecidos"></p>
             </div>
             <?php
-            if (!count($categorias)) {
+            if (!count($favorecidoss)) {
             ?>
                 <div class="alert alert-info alert-dismissible fade show" role="alert">
                     <button type="button" class="btn-close btn-sm" data-bs-dismiss="alert" aria-label="Close"></button>
-                    Nenhuma categoria encontrada!
+                    Nenhum favorecidos encontrado!
                 </div>
             <?php
             } else {
             ?>
                 <div class="table-responsive">
-                    <table class="table table-striped table-hover" id="lista_categoria">
+                    <table class="table table-striped table-hover" id="lista_favorecidos">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -145,15 +145,15 @@ try {
                         </thead>
                         <tbody>
                             <?php
-                            foreach ($categorias as $categoria) {
+                            foreach ($favorecidoss as $favorecidos) {
                             ?>
-                                <tr id="<?php echo $categoria['id'] . "_categoria"; ?>">
-                                    <td><?php echo $categoria["id"]; ?></td>
-                                    <td><?php echo $categoria["descricao"]; ?></td>
+                                <tr id="<?php echo $favorecidos['id'] . "_favorecidos"; ?>">
+                                    <td><?php echo $favorecidos["id"]; ?></td>
+                                    <td><?php echo $favorecidos["descricao"]; ?></td>
                                     <td>
-                                        <a id="botao_view_categoria" chave="<?php echo $categoria['id']; ?>" class="btn btn-info btn-sm" title="Visualizar"><i class="fas fa-eye"></i></a>
-                                        <a id="botao_editar_categoria" chave="<?php echo $categoria['id']; ?>" class="btn btn-success btn-sm" title="Editar"><i class="fas fa-edit"></i></a>
-                                        <a id="botao_excluir_categoria" chave="<?php echo $categoria['id']; ?>" class="btn btn-danger btn-sm" title="Excluir"><i class="fas fa-trash-alt"></i></a>
+                                        <a id="botao_view_favorecidos" chave="<?php echo $favorecidos['id']; ?>" class="btn btn-info btn-sm" title="Visualizar"><i class="fas fa-eye"></i></a>
+                                        <a id="botao_editar_favorecidos" chave="<?php echo $favorecidos['id']; ?>" class="btn btn-success btn-sm" title="Editar"><i class="fas fa-edit"></i></a>
+                                        <a id="botao_excluir_favorecidos" chave="<?php echo $favorecidos['id']; ?>" class="btn btn-danger btn-sm" title="Excluir"><i class="fas fa-trash-alt"></i></a>
                                     </td>
                                 </tr>
                             <?php
@@ -171,19 +171,19 @@ try {
 </div>
 
 <!--modal de excluir-->
-<div class="modal fade" id="modal_excluir_categoria" tabindex="-1" aria-labelledby="logoutlabel" aria-hidden="true">
+<div class="modal fade" id="modal_excluir_favorecidos" tabindex="-1" aria-labelledby="logoutlabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="logoutlabel_categoria">Pergunta</h5>
+                <h5 class="modal-title" id="logoutlabel_favorecidos">Pergunta</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 Deseja excluir o registro?
-                <input type="hidden" id="id_excluir_categoria" value="" />
+                <input type="hidden" id="id_excluir_favorecidos" value="" />
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="modal_excluir_sim_categoria">Sim</button>
+                <button type="button" class="btn btn-primary" id="modal_excluir_sim_favorecidos">Sim</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
             </div>
         </div>
@@ -191,6 +191,6 @@ try {
 </div>
 <script>
      //devido ao load precisa carregar o arquivo js dessa forma
-    var url = "./js/sistema/categoria.js";
+    var url = "./js/sistema/favorecidos.js";
     $.getScript(url);
 </script>

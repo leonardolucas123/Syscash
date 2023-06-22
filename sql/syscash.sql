@@ -48,6 +48,17 @@ CREATE TABLE IF NOT EXISTS `syscash`.`categoria` (
     REFERENCES `syscash`.`usuario` (`id`))
 ENGINE = InnoDB;
 
+CREATE TABLE IF NOT EXISTS `syscash`.`favorecido` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(45) NOT NULL,
+  `tipo` SMALLINT NOT NULL,
+  `usuario_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_favorecido_usuario` (`usuario_id` ASC),
+  CONSTRAINT `fk_favorecido_usuario`
+    FOREIGN KEY (`usuario_id`)
+    REFERENCES `syscash`.`usuario` (`id`))
+ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `syscash`.`conta_receber`
