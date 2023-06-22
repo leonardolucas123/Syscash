@@ -61,7 +61,7 @@ try {
     $pre_registros->bindValue(":palavra", "%" . $texto_busca . "%", PDO::PARAM_STR);
     $pre_registros->bindValue(":id", $usuario_id, PDO::PARAM_INT);
     $pre_registros->execute();
-    $favorecidoss = $pre_registros->fetchAll(PDO::FETCH_ASSOC);
+    $favorecidos = $pre_registros->fetchAll(PDO::FETCH_ASSOC);
 } catch (Exception $e) {
     $erros[] = $e->getMessage();
     $_SESSION["erros"] = $erros;
@@ -125,7 +125,7 @@ try {
                 <p id="div_mensagem_texto_favorecidos"></p>
             </div>
             <?php
-            if (!count($favorecidoss)) {
+            if (!count($favorecidos)) {
             ?>
                 <div class="alert alert-info alert-dismissible fade show" role="alert">
                     <button type="button" class="btn-close btn-sm" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -145,7 +145,7 @@ try {
                         </thead>
                         <tbody>
                             <?php
-                            foreach ($favorecidoss as $favorecidos) {
+                            foreach ($favorecidos as $favorecidos) {
                             ?>
                                 <tr id="<?php echo $favorecidos['id'] . "_favorecidos"; ?>">
                                     <td><?php echo $favorecidos["id"]; ?></td>
