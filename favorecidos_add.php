@@ -68,8 +68,8 @@ if (filter_input(INPUT_SERVER, "REQUEST_METHOD") === "POST") {
                     <div class="tab-content" id="tabdados_favorecidos">
                         <div class="tab-pane fade show active" id="dados_favorecidos" role="tabpanel" aria-labelledby="dados_favorecidos">
                             <div class="col-md-6">
-                                <label for="descricao" class="form-label">Descrição</label>
-                                <input type="text" class="form-control" id="descricao_favorecidos" name="descricao_favorecidos" maxlength="50" autofocus>
+                                <label for="nome" class="form-label">Descrição</label>
+                                <input type="text" class="form-control" id="nome_favorecidos" name="nome_favorecidos" maxlength="50" autofocus>
                             </div>
                             <div class="col-md-6">
                                 <input class="form-check-input" type="radio" name="tipo_favorecidos" id="tipo_favorecidos" value="1">

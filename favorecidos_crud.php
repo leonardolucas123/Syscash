@@ -20,11 +20,11 @@ if (filter_input(INPUT_SERVER, "REQUEST_METHOD") === "POST") {
                 $registro = json_decode($_POST['registro']);
                 validaDados($registro);
 
-                $sql = "insert into favorecidos(descricao, tipo, usuario_id) VALUES (?, ?, ?) ";
+                $sql = "insert into favorecidos(nome, tipo, usuario_id) VALUES (?, ?, ?) ";
                 $conexao = new PDO("mysql:host=" . SERVIDOR . ";dbname=" . BANCO, USUARIO, SENHA);
                 $pre = $conexao->prepare($sql);
                 $pre->execute(array(
-                    $registro->descricao_favorecidos,
+                    $registro->nome_favorecidos,
                     $registro->tipo_favorecidos,
                     $registro->usuario_id_favorecidos
                 ));
@@ -50,11 +50,11 @@ if (filter_input(INPUT_SERVER, "REQUEST_METHOD") === "POST") {
                 $registro = json_decode($_POST['registro']);
                 validaDados($registro);
 
-                $sql = "update favorecidos set descricao = ? where id = ? ";
+                $sql = "update favorecidos set nome = ? where id = ? ";
                 $conexao = new PDO("mysql:host=" . SERVIDOR . ";dbname=" . BANCO, USUARIO, SENHA);
                 $pre = $conexao->prepare($sql);
                 $pre->execute(array(
-                    $registro->descricao_favorecidos,
+                    $registro->nome_favorecidos,
                     $registro->id_favorecidos
                 ));
                 print json_encode(1);
@@ -138,7 +138,7 @@ function listarfavorecidos()
     try {
         $usuario_id = isset($_SESSION["usuario_id"]) ? $_SESSION["usuario_id"] : 0;
 
-        $sql = "select * from favorecidos where usuario_id = ? order by descricao";
+        $sql = "select * from favorecidos where usuario_id = ? order by nome";
         $conexao = new PDO("mysql:host=" . SERVIDOR . ";dbname=" . BANCO, USUARIO, SENHA);
         $pre = $conexao->prepare($sql);
         $pre->execute(array(
@@ -160,7 +160,7 @@ function listarFavorecidosEntrada()
     try {
         $usuario_id = isset($_SESSION["usuario_id"]) ? $_SESSION["usuario_id"] : 0;
 
-        $sql = "select * from favorecidos where usuario_id = ? and tipo = 1 order by descricao";
+        $sql = "select * from favorecidos where usuario_id = ? and tipo = 1 order by nome";
         $conexao = new PDO("mysql:host=" . SERVIDOR . ";dbname=" . BANCO, USUARIO, SENHA);
         $pre = $conexao->prepare($sql);
         $pre->execute(array(

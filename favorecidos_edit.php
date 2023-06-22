@@ -81,8 +81,8 @@ if (filter_input(INPUT_SERVER, "REQUEST_METHOD") === "POST") {
                     <div class="tab-content" id="tabdados_favorecidos">
                         <div class="tab-pane fade show active" id="dados_favorecidos" role="tabpanel" aria-labelledby="dados_favorecidos">
                             <div class="col-md-6">
-                                <label for="descricao_favorecidos" class="form-label">Descrição</label>
-                                <input type="text" class="form-control" id="descricao_favorecidos" name="descricao_favorecidos" maxlength="50" value="<?php echo isset($resultado['descricao']) ? $resultado['descricao'] : ''; ?>" autofocus>
+                                <label for="nome_favorecidos" class="form-label">Descrição</label>
+                                <input type="text" class="form-control" id="nome_favorecidos" name="nome_favorecidos" maxlength="50" value="<?php echo isset($resultado['nome']) ? $resultado['nome'] : ''; ?>" autofocus>
                             </div>
                             <div class="col-md-6">
                                 <input class="form-check-input" type="radio" name="tipo_favorecidos" id="tipo_favorecidos" value="1" <?php echo (isset($resultado['tipo']) && $resultado['tipo'] == 1) ? 'checked' : ''; ?> disabled>

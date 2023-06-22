@@ -30,7 +30,7 @@ try {
     $conexao = new PDO("mysql:host=" . SERVIDOR . ";dbname=" . BANCO, USUARIO, SENHA);
 
     //Sql para ser consultada
-    $sql = "select * from favorecidos where (id like :palavra or descricao like :palavra) and usuario_id = :id order by id asc ";
+    $sql = "select * from favorecidos where (id like :palavra or nome like :palavra) and usuario_id = :id order by id asc ";
 
     // Codificação da paginação
     $pre_pagina = $conexao->prepare($sql);
@@ -149,7 +149,7 @@ try {
                             ?>
                                 <tr id="<?php echo $favorecidos['id'] . "_favorecidos"; ?>">
                                     <td><?php echo $favorecidos["id"]; ?></td>
-                                    <td><?php echo $favorecidos["descricao"]; ?></td>
+                                    <td><?php echo $favorecidos["nome"]; ?></td>
                                     <td>
                                         <a id="botao_view_favorecidos" chave="<?php echo $favorecidos['id']; ?>" class="btn btn-info btn-sm" title="Visualizar"><i class="fas fa-eye"></i></a>
                                         <a id="botao_editar_favorecidos" chave="<?php echo $favorecidos['id']; ?>" class="btn btn-success btn-sm" title="Editar"><i class="fas fa-edit"></i></a>
