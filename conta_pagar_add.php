@@ -78,13 +78,8 @@ if (filter_input(INPUT_SERVER, "REQUEST_METHOD") === "POST") {
                                 <input type="text" class="form-control" id="descricao_contapagar" name="descricao_contapagar" maxlength="100" autofocus>
                             </div>
                             <div class="col-md-6">
-                            <label for="favorecido_contapagar" class="form-label">Favorecido</label><select name="favorecido_id_contapagar" id="favorecido_id_contapagar" class="form-select">
-                                    <?php
-                                    $favorecidos = listarFavorecidosEntrada();
-                                    foreach ($favorecidos as $favorecidos) {
-                                        echo "<option value='" . $favorecidos["id"] . "'>" . $favorecidos["descricao"] . "</option>";
-                                    }
-                                    ?>
+                            <label for="favorecido" class="form-label">Favorecido</label>
+                                <input type="text" class="form-control" id="favorecido_contapagar" name="favorecido_contapagar" maxlength="100">
                             </div>
                             <div class="col-md-6">
                                 <label for="valor" class="form-label">Valor R$</label>

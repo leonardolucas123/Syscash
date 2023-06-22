@@ -66,21 +66,16 @@ CREATE TABLE IF NOT EXISTS `conta_receber` (
 CREATE TABLE IF NOT EXISTS `conta_pagar` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `descricao` VARCHAR(100) NOT NULL,
-  `favorecido_id` INT NOT NULL,
   `valor` DECIMAL(10,2) NOT NULL,
   `data_vencimento` DATE NOT NULL,
   `categoria_id` INT NOT NULL,
   `usuario_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_conta_pagar_categoria` (`categoria_id` ASC),
-  INDEX `fk_conta_pagar_favorecido` (`favorecido_id` ASC),
   INDEX `fk_conta_pagar_usuario` (`usuario_id` ASC),
   CONSTRAINT `fk_conta_pagar_categoria`
     FOREIGN KEY (`categoria_id`)
     REFERENCES `categoria` (`id`),
-  CONSTRAINT `fk_conta_pagar_favorecido`
-    FOREIGN KEY (`favorecido_id`)
-    REFERENCES `favorecidos` (`id`),
   CONSTRAINT `fk_conta_pagar_usuario`
     FOREIGN KEY (`usuario_id`)
     REFERENCES `usuario` (`id`)
