@@ -71,6 +71,25 @@ CREATE TABLE IF NOT EXISTS `syscash`.`conta_receber` (
     REFERENCES `syscash`.`usuario` (`id`))
 ENGINE = InnoDB;
 
+CREATE TABLE IF NOT EXISTS `syscash`.`conta_pagar` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `descricao` VARCHAR(100) NOT NULL,
+  `favorecido` VARCHAR(100) NOT NULL,
+  `valor` DECIMAL(10,2) NOT NULL,
+  `data_vencimento` DATE NOT NULL,
+  `categoria_id` INT NOT NULL,
+  `usuario_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_conta_pagar_categoria` (`categoria_id` ASC),
+  INDEX `fk_conta_pagar_usuario` (`usuario_id` ASC),
+  CONSTRAINT `fk_conta_pagar_categoria`
+    FOREIGN KEY (`categoria_id`)
+    REFERENCES `syscash`.`categoria` (`id`),
+  CONSTRAINT `fk_conta_pagar_usuario`
+    FOREIGN KEY (`usuario_id`)
+    REFERENCES `syscash`.`usuario` (`id`))
+ENGINE = InnoDB;
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
